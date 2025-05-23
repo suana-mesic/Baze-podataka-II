@@ -17,7 +17,7 @@ create table Uposlenici
 	UposlenikID int constraint PK_Uposlenici primary key identity(1,1),
 	Ime nvarchar(10) not null, 
 	Prezime nvarchar(20) not null, 
-	DatumRodjenja datetime,
+	DatumRodjenja datetime not null,
 	UkupanBrojTeritorija int
 )
 
@@ -32,7 +32,7 @@ create table Uposlenici
 create table Narudzbe
 (
 	NarudzbaID int constraint PK_Narudzbe primary key identity(1,1),
-	UposlenikID 
+	UposlenikID int constraint FK_Narudzbe_Uposlenici foreign key references Uposlenici (UposlenikID),
 	DatumNarudzbe datetime,
 	ImeKompanijeKupca nvarchar(40),
 	AdresaKupca nvarchar(60)
@@ -48,7 +48,7 @@ create table Narudzbe
 create table Proizvodi
 (
 	ProizvodID int constraint PK_Proizvodi primary key identity(1,1),
-	NazivProizvoda nvarchar(40) int constraint FK_Narudzbe_Uposlenici foreign key references Uposlenici(UposlenikID),not null,
+	NazivProizvoda nvarchar(40) not null,
 	NazivKompanijeDobavljaca nvarchar(40),
 	NazivKategorije nvarchar(15)
 )
